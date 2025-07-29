@@ -12,6 +12,7 @@ import {
 } from '@angular/material/expansion';
 import { FileUploadComponent } from '../shared/file-upload/file-upload.component';
 import { ThemePickerComponent } from '../shared/theme-picker/theme-picker.component';
+import { TranslationSharedModule } from '../shared/translation-shared.module';
 import { STANDALONE_SHARED_IMPORTS } from 'app/standalone-shared.module';
 
 /**
@@ -23,6 +24,7 @@ import { STANDALONE_SHARED_IMPORTS } from 'app/standalone-shared.module';
   styleUrls: ['./settings.component.scss'],
   imports: [
     ...STANDALONE_SHARED_IMPORTS,
+    TranslationSharedModule,
     MatAccordion,
     MatExpansionPanel,
     MatExpansionPanelHeader,

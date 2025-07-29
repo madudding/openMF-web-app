@@ -57,7 +57,7 @@ export class LanguageSelectorComponent {
    * Returns all the languages supported by the application.
    * @return {string[]} Supported languages.
    */
-  get languages(): string[] {
+  get languages(): readonly string[] {
     return this.translateService.getLangs();
   }
 }

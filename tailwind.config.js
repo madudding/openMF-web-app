@@ -1,12 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: process.env.TAILWIND_MODE ? 'jit' : '',
   content: [
-    './src/app/**/*.{html,js}',
-    './index.html'
+    './src/**/*.{html,ts,scss}',
+    './src/**/*.{html,ts}',
+    './src/**/*.html',
+    './src/**/*.scss'
   ],
   theme: {
-    extends: {
+    extend: {
       animation: {
         wiggle: 'wiggle 1s ease-in-out infinite',
         'fade-in-down': 'fade-in-down 0.3s ease-out',

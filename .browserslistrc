@@ -3,8 +3,16 @@
 # https://github.com/browserslist/browserslist#queries
 
 last 2 versions
-> 0.5%
-Firefox ESR
+> 0.2%
+not dead
+not ie <= 11
+not op_mini all
+chrome >= 61
+firefox >= 60
+edge >= 16
+safari >= 11
+ios_saf >= 11
+android >= 76
 not dead
 not kaios 2.5
 not op_mini all

@@ -1,6 +1,8 @@
 /** Angular Imports */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpBackend, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
@@ -39,11 +41,13 @@ import { PortalModule } from '@angular/cdk/portal';
 /** Main Routing Module */
 import { AppRoutingModule } from './app-routing.module';
 import { DatePipe, LocationStrategy } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import {
   TranslateLoader,
   TranslateModule,
   MissingTranslationHandler,
-  MissingTranslationHandlerParams
+  MissingTranslationHandlerParams,
+  TranslatePipe
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -60,8 +64,13 @@ export class CustomMissingTranslationHandler implements MissingTranslationHandle
  * Core module and all feature modules should be imported here in proper order.
  */
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+interface TranslationObject {
+  [key: string]: any;
+}
+
+export function HttpLoaderFactory(httpBackend: HttpBackend): TranslateLoader {
+  const http = new HttpClient(httpBackend);
+  return new TranslateHttpLoader(http, './assets/translations/', '.json') as TranslateLoader;
 }
 
 @NgModule({
@@ -71,18 +80,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: (httpBackend: HttpBackend, locationStrategy: LocationStrategy) => {
-          const http = new HttpClient(httpBackend);
-          return new TranslateHttpLoader(http, `/assets/translations/`, '.json');
-        },
-        deps: [
-          HttpBackend,
-          LocationStrategy
-        ]
+        useFactory: HttpLoaderFactory,
+        deps: [HttpBackend]
       },
       missingTranslationHandler: { provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler }
     }),
     BrowserModule,
+    RouterModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     PortalModule,
     CoreModule,

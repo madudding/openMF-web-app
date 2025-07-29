@@ -14,9 +14,11 @@ import { MatDatepickerInput, MatDatepickerToggle, MatDatepicker } from '@angular
 import { MatButton } from '@angular/material/button';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { DateFormatPipe } from '@pipes/date-format.pipe';
-import { TranslatePipe as NgxTranslatePipe } from '@ngx-translate/core';
-import { TranslatePipe } from '@pipes/translate.pipe';
 import { HasPermissionDirective } from './directives/has-permission/has-permission.directive';
+import { TranslationSharedModule } from './shared/translation-shared.module';
+
+// Export TranslationSharedModule so it can be imported by other modules
+export { TranslationSharedModule };
 
 export const STANDALONE_SHARED_IMPORTS = [
   CommonModule,
@@ -43,9 +45,6 @@ export const STANDALONE_SHARED_IMPORTS = [
   MatCheckbox,
   DateFormatPipe,
   HasPermissionDirective,
-
-  // Pipes and Directives
-  NgxTranslatePipe,
-  TranslatePipe
+  TranslationSharedModule
 ];
 export { HasPermissionDirective } from './directives/has-permission/has-permission.directive';
