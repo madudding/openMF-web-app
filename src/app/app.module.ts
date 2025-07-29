@@ -113,10 +113,10 @@ export function HttpLoaderFactory(httpBackend: HttpBackend): TranslateLoader {
     ConfigurationWizardModule,
     AppRoutingModule,
     NotFoundComponent
-
   ],
   providers: [
     DatePipe,
-    provideHttpClient(withInterceptorsFromDi())]
+    provideHttpClient(withInterceptorsFromDi())
+  ]
 })
 export class AppModule {}
